@@ -15,7 +15,7 @@ source = require 'vinyl-source-stream'
 buffer = require 'vinyl-buffer'
 sourcemaps = require 'gulp-sourcemaps'
 glob = require 'glob'
-_ = require 'loadsh'
+_ = require 'lodash'
 
 src =
   sass: './src/scss/**/*.scss'
@@ -24,17 +24,6 @@ src =
 dest =
   css: './public/css/'
   js: './public/js/'
-
-gulp.task 'browser-sync', ->
-  files = [
-    dest.css
-    dest.js
-  ]
-  browserSync.init files,
-    server:
-      baseDir: "./public"
-      watchOptions:
-        debounceDelay: 1000
 
 gulp.task 'dev:css', ->
   gulp.src(src.sass)
@@ -57,14 +46,9 @@ gulp.task 'dev:js', ->
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(dest.js))
 
-
 gulp.task 'watch', ->
   gulp.watch src.sass, ['dev:css']
   gulp.watch src.coffee, ['dev:js']
-
-  gulp.watch 'public/**/**', (file) ->
-    if file.type is "changed"
-      browserSync.reload(file.path)
 
 gulp.task 'build:css', ->
   gulp.src(src.sass)
@@ -80,8 +64,8 @@ gulp.task 'build:js', ->
     .pipe(gulp.dest(dest.js))
 
 gulp.task 'clean', ->
-  del(['public/css', 'public/js'])
+  del([dest.css, dest.js])
 
-gulp.task 'default', ['dev:css', 'dev:js', 'watch', 'browser-sync']
+gulp.task 'default', ['dev:css', 'dev:js', 'watch']
 
 gulp.task 'build', ['build:css', 'build:js']
