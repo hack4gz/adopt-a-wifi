@@ -1,8 +1,8 @@
 request = require 'browser-request'
 
 map = new BMap.Map "map"
-point = new BMap.Point 116.331398,39.897445
-map.centerAndZoom point, 5
+point = new BMap.Point 113.264435, 23.129163 # 广州市经纬度
+map.centerAndZoom point, 12
 
 geolocation = new BMap.Geolocation()
 geolocation.getCurrentPosition ((r) ->

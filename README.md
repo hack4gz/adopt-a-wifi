@@ -30,7 +30,7 @@ WIFI领养计划
 * 在`mysql`中,`source /path/to/adopt-a-wifi/app/seed.sql`
     * 在数据库插入
         * `use wifimap`
-        * `insert into wifis (name, owner, latitude, longitude) values ("xxx", "xxx", xxx.xxxxxxx, xxx.xxxxxxx)`
+        * `insert into wifis (name, owner, latitude, longitude) values ("xxx", "xxx", xxx.xxxxxxx, xxx.xxxxxxx)`, 广州市经纬度为113.264435, 23.129163,
 * 使用gulp进行开发管理`gulp`
 * 开启node服务器,`node app.js`或者 `nodemon app.js`
 
