@@ -6,7 +6,7 @@ app.get('/', function(req, res) {
   Point.getAllPoints(function(err, points) {
     if (err)  {
       res.status(500).json({message: err});
-      return
+      return;
     }
 
     res.status(200).json(points);

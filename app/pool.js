@@ -1,6 +1,6 @@
 var mysql = require('mysql');
 var pool = mysql.createPool({
-  database: 'wlan',
+  database: 'wifimap',
   host: 'localhost',
   user: 'root'
 });
