@@ -7,5 +7,39 @@ block head
   script(src="http://api.map.baidu.com/api?v=2.0&ak=TeNY1seRygCWDcHygkTT6i7L")
 
 block content
-  #map
+  .sidebar
+    h1 领养<b>WIFI</b>
+    p.alert-message 您可领养一个WIFI，如果您提供了一个公共的，可访问世界的WIFI。
+
+    form.pure-form.pure-form-stacked
+      fieldset
+        .pure-control-group
+          label(for='email') 邮箱
+          span.required  *
+          input.email(type='email', data-bind="textInput: email")
+
+        .pure-control-group
+          label(for='adopter') 收养人
+          span.required  *
+          input.adopter(type='text', data-bind="textInput: adopter")
+
+        .pure-control-group
+          label(for='wifi') WIFI名称
+          span.required  *
+          input.wifi(type='text', data-bind="textInput: wifi")
+
+        .pure-control-group
+          label(for='location') 详细地址
+          span.required  *
+          input.location(type='text', data-bind="textInput: location")
+
+        .pure-control-group
+          label(for='business') 店家促销信息
+          input.business(type='text', data-bind="textInput: business")
+
+        .submit-container
+          button.pure-button.submit(type='button', data-bind="click: submit, css: buttonStatus") 提交
+
+  .map-container
+    #map
   script(src="/js/home.js")

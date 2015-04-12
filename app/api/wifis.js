@@ -1,15 +1,15 @@
 var express = require('express');
-var Point = require('../models/point');
+var Wifi = require('../models/wifi');
 var app = express();
 
 app.get('/', function(req, res) {
-  Point.getAllPoints(function(err, points) {
+  Wifi.getAllWifis(function(err, wifis) {
     if (err)  {
       res.status(500).json({message: err});
       return;
     }
 
-    res.status(200).json(points);
+    res.status(200).json(wifis);
   });
 });
 
