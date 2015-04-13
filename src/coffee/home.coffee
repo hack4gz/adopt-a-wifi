@@ -69,9 +69,9 @@ createMarker = (wifi) ->
   opts =
     width: 200
     height: 100
-    title: wifi.adopter + ' ' + wifi.name
+    # title: wifi.adopter + ' ' + wifi.name
     enableMessage: false
-  infoContent = if wifi.business then wifi.business else '这里是输入' + wifi.adopter + '的' + wifi.name
+  infoContent = wifi.adopter + ' 领养了<br/> ' + ( if wifi.business then (wifi.business + ' 的<br/>') else '' ) + "WIFI: " + wifi.name
   infoWindow = new BMap.InfoWindow(infoContent, opts)
   mk.addEventListener 'click', ->
     map.openInfoWindow infoWindow, mapPoint
