@@ -8,34 +8,34 @@ block head
 
 block content
   .sidebar
-    h1 领养<b>WIFI</b>
-    p.alert-message 如果你提供了一个可访问世界的WIFI，我们将在地图上为你标记。
+    h1 <b>WIFI</b>领养计划
+    p.alert-message 领养一个自己的或者附近的公共空间的 WIFI，让它拥有科学上网的超能力，让你身边更多的人可以科学上网！
 
     form.pure-form.pure-form-stacked
       fieldset
         .pure-control-group
-          label(for='email') 邮箱
+          label(for='email') 你的邮箱
           span.required  *
-          input.email(type='email', data-bind="textInput: email", placeholder="方便我们与你联系")
+          input.email(type='email', data-bind="textInput: email", placeholder="我们会发邮件给你核实信息哟")
 
         .pure-control-group
-          label(for='adopter') 收养人
+          label(for='adopter') 领养人
           span.required  *
-          input.adopter(type='text', data-bind="textInput: adopter", placeholder="输入你的称呼")
+          input.adopter(type='text', data-bind="textInput: adopter", placeholder="告诉我们你叫什么！")
 
         .pure-control-group
-          label(for='wifi') WIFI名称
+          label(for='wifi') 你要领养的 WIFI 的名字
           span.required  *
-          input.wifi(type='text', data-bind="textInput: wifi", placeholder="输入WIFI名称")
+          input.wifi(type='text', data-bind="textInput: wifi", placeholder="让其他人找到你的 WIFI")
 
         .pure-control-group
-          label(for='location') 详细地址
+          label(for='location') 地址
           span.required  *
-          input.location(type='text', data-bind="textInput: location", placeholder="地址要尽量详细哦~")
+          input.location(type='text', data-bind="textInput: location", placeholder="尽量详细，好让我们在地图上标记")
 
         .pure-control-group
-          label(for='business') 店家促销信息
-          input.business(type='text', data-bind="textInput: business", placeholder="促销信息可以填在这里")
+          label(for='business') 公共空间的名字 
+          input.business(type='text', data-bind="textInput: business", placeholder="例如咖啡馆、办公室等等，可不填")
 
         .submit-container
           button.pure-button.submit(type='button', data-bind="click: submit, text: buttonContent, css: buttonStatus, disable: !isAllValid()")
