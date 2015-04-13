@@ -1,7 +1,10 @@
 var express = require('express');
-var pointsHandler = require('./api/points');
+var wifisHandler = require('./api/wifis');
+var applicationsHandler = require('./api/applications');
+var auth = require('./auth');
 
 var app = express();
-app.use('/points', pointsHandler);
+app.use('/wifis', wifisHandler);
+app.use('/applications', auth, applicationsHandler);
 
 module.exports = app;

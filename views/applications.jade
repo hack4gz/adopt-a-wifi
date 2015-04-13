@@ -1,0 +1,38 @@
+extends layout
+
+block head
+  link(rel='stylesheet', href='/css/applications.css')
+
+block content
+  table.pure-table.pure-table-horizontal(style="display: none", data-bind="visible: true")
+    thead
+      tr
+        th #
+        th 邮箱
+        th 收养人
+        th WIFI名
+        th 地址
+        th 商家信息
+        th 经度
+        th 纬度
+        th
+        th
+    tbody(data-bind="foreach: applications")
+      tr
+        td(data-bind="text: id")
+        td(data-bind="text: email")
+        td(data-bind="text: adopter")
+        td(data-bind="text: wifi")
+        td(data-bind="text: location")
+        td(data-bind="text: business")
+        td
+          input(type='text', data-bind="textInput: latitude")
+        td
+          input(type='text', data-bind="textInput: longitude")
+        td
+          button.pure-button.pure-button-primary(data-bind="click: confirmApplication, disable: !isValid()") 确认
+        td
+          button.pure-button(data-bind="click: deleteApplication") 删除
+
+  script(src="/js/applications.js")
+
