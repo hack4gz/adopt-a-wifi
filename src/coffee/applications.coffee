@@ -1,6 +1,8 @@
 request = require 'browser-request'
 ko = require 'knockout'
 
+tudeReg = /^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/;
+
 vm =
 
 request '/api/applications', (err, res) ->
@@ -14,7 +16,9 @@ bindProperty = (application) ->
   application.latitude = ko.observable ''
   application.longitude = ko.observable ''
   application.isValid = ko.pureComputed ->
-    if @latitude() and @longitude() then true; else false
+    console.log tudeReg.test @latitude()
+    console.log tudeReg.test @longitude()
+    if tudeReg.test @longitude() + ', ' + @latitude() then true else false
   , application
   application.confirmApplication = ->
     result = confirm('是否确定');

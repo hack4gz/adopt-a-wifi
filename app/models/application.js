@@ -21,7 +21,7 @@ exports.insertApplication = function(post, cb) {
 };
 
 exports.getAllApplications = function(cb) {
-  var sql = "select * from applications order by id desc";
+  var sql = "select * from applications";
 
   pool.getConnection(function(err, connection){
     if (err) { console.log(err); cb(err); return; }
