@@ -9,10 +9,8 @@ vm =
   location: ko.observable ""
   business: ko.observable ""
   buttonContent: ko.observable '提交'
-  disabled: false
   submit: ->
     vm.buttonContent '正在提交...'
-    vm.disabled = true
     request.post {
       url: '/api/applications'
       body:
@@ -24,7 +22,6 @@ vm =
       json: true
     }, (err, res, body) ->
       vm.buttonContent '提交'
-      vm.disabled = false
       if res.status is 200
         window.alert '提交成功, 我们将会在审核后为您标记，请耐心等候'
         vm.email ''
@@ -45,7 +42,7 @@ ko.applyBindings vm
 
 # 初始化地图
 map = new BMap.Map("map", enableMapClick: false)
-map.centerAndZoom '广州', 15
+map.centerAndZoom '广州', 12
 
 # 添加平移和缩放按钮
 topLeftControl = new BMap.ScaleControl(anchor: BMAP_ANCHOR_TOP_LEFT)
@@ -74,7 +71,8 @@ createMarker = (wifi) ->
     height: 100
     title: wifi.adopter + ' ' + wifi.name
     enableMessage: false
-  infoWindow = new BMap.InfoWindow("这是属于" + wifi.adopter + "的" + wifi.name, opts)
+  infoContent = if wifi.business then wifi.business else '这里是输入' + wifi.adopter + '的' + wifi.name
+  infoWindow = new BMap.InfoWindow(infoContent, opts)
   mk.addEventListener 'click', ->
     map.openInfoWindow infoWindow, mapPoint
 

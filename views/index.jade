@@ -9,36 +9,36 @@ block head
 block content
   .sidebar
     h1 领养<b>WIFI</b>
-    p.alert-message 您可领养一个WIFI，如果您提供了一个公共的，可访问世界的WIFI。
+    p.alert-message 如果你提供了一个可访问世界的WIFI，我们将在地图上为你标记。
 
     form.pure-form.pure-form-stacked
       fieldset
         .pure-control-group
           label(for='email') 邮箱
           span.required  *
-          input.email(type='email', data-bind="textInput: email")
+          input.email(type='email', data-bind="textInput: email", placeholder="方便我们与你联系")
 
         .pure-control-group
           label(for='adopter') 收养人
           span.required  *
-          input.adopter(type='text', data-bind="textInput: adopter")
+          input.adopter(type='text', data-bind="textInput: adopter", placeholder="输入你的称呼")
 
         .pure-control-group
           label(for='wifi') WIFI名称
           span.required  *
-          input.wifi(type='text', data-bind="textInput: wifi")
+          input.wifi(type='text', data-bind="textInput: wifi", placeholder="输入WIFI名称")
 
         .pure-control-group
           label(for='location') 详细地址
           span.required  *
-          input.location(type='text', data-bind="textInput: location")
+          input.location(type='text', data-bind="textInput: location", placeholder="地址要尽量详细哦~")
 
         .pure-control-group
           label(for='business') 店家促销信息
-          input.business(type='text', data-bind="textInput: business")
+          input.business(type='text', data-bind="textInput: business", placeholder="促销信息可以填在这里")
 
         .submit-container
-          button.pure-button.submit(type='button', data-bind="click: submit, css: buttonStatus, text: buttonContent, disable: disabled")
+          button.pure-button.submit(type='button', data-bind="click: submit, text: buttonContent, css: buttonStatus, disable: !isAllValid()")
 
   .map-container
     #map
