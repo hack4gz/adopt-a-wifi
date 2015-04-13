@@ -8,7 +8,7 @@ create table wifis
   name varchar(255) NOT NULL,
   latitude decimal(10, 7) NOT NULL,
   longitude decimal(10, 7) NOT NULL,
-  business varchar(255)
+  business varchar(255), 
 
   primary key (id)
 )
