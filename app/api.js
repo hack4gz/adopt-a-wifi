@@ -5,6 +5,6 @@ var auth = require('./auth');
 
 var app = express();
 app.use('/wifis', wifisHandler);
-app.use('/applications', auth, applicationsHandler);
+app.use('/applications', applicationsHandler);
 
 module.exports = app;
