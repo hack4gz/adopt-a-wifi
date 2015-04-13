@@ -8,9 +8,13 @@ vm =
   wifi: ko.observable ""
   location: ko.observable ""
   business: ko.observable ""
+  buttonContent: ko.observable '提交'
+  disabled: false
   submit: ->
+    vm.buttonContent '正在提交...'
+    vm.disabled = true
     request.post {
-      url: '/api/apply'
+      url: '/api/applications'
       body:
         email: vm.email()
         adopter: vm.adopter()
@@ -19,6 +23,17 @@ vm =
         business: vm.business()
       json: true
     }, (err, res, body) ->
+      vm.buttonContent '提交'
+      vm.disabled = false
+      if res.status is 200
+        window.alert '提交成功, 我们将会在审核后为您标记，请耐心等候'
+        vm.email ''
+        vm.adopter ''
+        vm.wifi ''
+        vm.location ''
+        vm.business ''
+      else
+        window.alert '服务器出现问题，请稍后再试'
   isEmailValid: ko.pureComputed ->
     emailReg.test vm.email()
   isAllValid: ko.pureComputed ->
@@ -29,9 +44,8 @@ vm =
 ko.applyBindings vm
 
 # 初始化地图
-map = new BMap.Map "map"
-point = new BMap.Point 113.264435, 23.129163 # 广州市经纬度
-map.centerAndZoom point, 12
+map = new BMap.Map("map", enableMapClick: false)
+map.centerAndZoom '广州', 15
 
 # 添加平移和缩放按钮
 topLeftControl = new BMap.ScaleControl(anchor: BMAP_ANCHOR_TOP_LEFT)
@@ -50,16 +64,17 @@ geolocation.getCurrentPosition ((r) ->
 ), enableHighAccuracy: true
 
 # 创建标签
-createMarker = (point) ->
-  mapPoint = new BMap.Point point.latitude, point.longitude
+createMarker = (wifi) ->
+  mapPoint = new BMap.Point wifi.latitude, wifi.longitude
   mk = new BMap.Marker mapPoint
   map.addOverlay mk
+  mk.setAnimation BMAP_ANIMATION_DROP
   opts =
     width: 200
     height: 100
-    title: point.owner + ' ' + point.name
+    title: wifi.adopter + ' ' + wifi.name
     enableMessage: false
-  infoWindow = new BMap.InfoWindow("这是属于" + point.owner + "的" + point.name, opts)
+  infoWindow = new BMap.InfoWindow("这是属于" + wifi.adopter + "的" + wifi.name, opts)
   mk.addEventListener 'click', ->
     map.openInfoWindow infoWindow, mapPoint
 

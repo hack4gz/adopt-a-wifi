@@ -38,7 +38,7 @@ block content
           input.business(type='text', data-bind="textInput: business")
 
         .submit-container
-          button.pure-button.submit(type='button', data-bind="click: submit, css: buttonStatus") 提交
+          button.pure-button.submit(type='button', data-bind="click: submit, css: buttonStatus, text: buttonContent, disable: disabled")
 
   .map-container
     #map

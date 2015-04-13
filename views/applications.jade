@@ -30,7 +30,7 @@ block content
         td
           input(type='text', data-bind="textInput: longitude")
         td
-          button.pure-button.pure-button-primary(data-bind="click: confirmApplication") 确认
+          button.pure-button.pure-button-primary(data-bind="click: confirmApplication, disable: !isValid()") 确认
         td
           button.pure-button(data-bind="click: deleteApplication") 删除
 
