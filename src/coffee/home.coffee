@@ -51,14 +51,14 @@ map.addControl(topLeftControl)
 map.addControl(topLeftNavigation)
 
 # 得到当前位置
-geolocation = new BMap.Geolocation()
-geolocation.getCurrentPosition ((r) ->
-  if @getStatus() == BMAP_STATUS_SUCCESS
-    map.centerAndZoom r.point, 15
-  else
-    alert '失败' + @getStatus()
-  return
-), enableHighAccuracy: true
+# geolocation = new BMap.Geolocation()
+# geolocation.getCurrentPosition ((r) ->
+#   if @getStatus() == BMAP_STATUS_SUCCESS
+#     map.centerAndZoom r.point, 15
+#   else
+#     alert '失败' + @getStatus()
+#   return
+# ), enableHighAccuracy: true
 
 # 创建标签
 createMarker = (wifi) ->
