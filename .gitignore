@@ -1,5 +1,7 @@
 node_modules
-public/css/*.css
-public/js/*.js
-public/js/*.js.map
 
+public/*
+!public/css/
+
+public/css/*
+!public/css/vendors
