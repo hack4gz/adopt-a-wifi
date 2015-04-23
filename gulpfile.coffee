@@ -64,7 +64,7 @@ gulp.task 'build:js', ->
     .pipe(gulp.dest(dest.js))
 
 gulp.task 'clean', ->
-  del([dest.css, dest.js])
+  del(["./public/css/*.css", "./public/js/*.js"])
 
 gulp.task 'default', ['dev:css', 'dev:js', 'watch']
 

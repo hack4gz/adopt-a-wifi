@@ -24,4 +24,26 @@ app.post('/', function(req, res) {
   });
 });
 
+app.delete('/', function(req, res) {
+  Wifi.deleteWifi(req.body.id, function(err, wifi) {
+    if (err) {
+      res.status(500).json({message: err});
+      return;
+    }
+
+    res.status(200).json(wifi);
+  });
+});
+
+app.put('/', function(req, res) {
+  Wifi.updateWifi(req.body, function(err, wifi) {
+    if (err) {
+      res.status(500).json({message: err});
+      return;
+    }
+
+    res.status(200).json(wifi);
+  });
+});
+
 module.exports = app;
