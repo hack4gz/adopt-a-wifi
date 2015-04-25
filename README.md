@@ -18,8 +18,8 @@ WIFI领养计划
 * ~~一个静态页面，显示一个广州区域的百度地图~~
 * ~~数据库，储存已标记区域的信息(可能是领养者名字，wifi名字，wifi密码，备注?)~~
 * ~~地图根据数据库信息显示小红旗~~
-* 用户可在静态页面提交认领某WIFI的申请
-* Github page 指向/serve 该静态页面
+* ~~用户可在静态页面提交认领某WIFI的申请~~
+* ~~Github page 指向/serve 该静态页面~~
 
 ## Install:
 * 需要安装`mysql`
@@ -30,11 +30,8 @@ WIFI领养计划
 * 开启mysql服务, `mysql.server start`
 * 进入`mysql`,`mysql -u root`
 * 在`mysql`中,`source /path/to/adopt-a-wifi/app/seed.sql`
-    * 在数据库插入
-        * `use wifimap`
-        * `insert into wifis (name, owner, latitude, longitude) values ("xxx", "xxx", xxx.xxxxxxx, xxx.xxxxxxx)`, 广州市经纬度为113.264435, 23.129163,
-* 使用gulp进行开发管理`gulp`
-* 开启node服务器,`node app.js`或者 `nodemon app.js`
+* 开发时，只需`gulp`，便可开启nodemon，livereload
+* 另有`gulp build`用于production版本
 
 
 
