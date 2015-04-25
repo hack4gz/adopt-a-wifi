@@ -1,7 +1,2 @@
 node_modules
-
-public/*
-!public/css/
-
-public/css/*
-!public/css/vendors
+public
