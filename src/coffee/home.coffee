@@ -12,11 +12,11 @@ vm =
   submit: ->
     vm.buttonContent '正在提交...'
     request.post {
-      url: '/api/applications'
+      url: '/api/wifis'
       body:
         email: vm.email()
         adopter: vm.adopter()
-        wifi: vm.wifi()
+        name: vm.wifi()
         location: vm.location()
         business: vm.business()
       json: true
@@ -79,6 +79,5 @@ createMarker = (wifi) ->
 # 得到所有的标签
 request '/api/wifis/', (err, res) ->
   wifis = JSON.parse res.response
-  for wifi in wifis
-    createMarker wifi
+  createMarker wifi for wifi in wifis when wifi.passed_flag
 

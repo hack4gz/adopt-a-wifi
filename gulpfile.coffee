@@ -5,7 +5,6 @@ del = require 'del'
 sass = require 'gulp-sass'
 coffee = require 'gulp-coffee'
 uglify = require 'gulp-uglify'
-browserSync = require 'browser-sync'
 autoprefixer = require 'gulp-autoprefixer'
 browserify = require 'browserify'
 gulpBrowserify = require 'gulp-browserify'
@@ -15,6 +14,8 @@ source = require 'vinyl-source-stream'
 buffer = require 'vinyl-buffer'
 sourcemaps = require 'gulp-sourcemaps'
 glob = require 'glob'
+nodemon = require 'gulp-nodemon'
+livereload = require 'gulp-livereload'
 _ = require 'lodash'
 
 src =
@@ -24,6 +25,15 @@ src =
 dest =
   css: './public/css/'
   js: './public/js/'
+
+gulp.task 'nodemon', ->
+  nodemon
+    script: './bin/www'
+    env: 'NODE_ENV': 'development'
+
+gulp.task 'css:vendors', ->
+  gulp.src('src/scss/vendors/*.*')
+    .pipe(gulp.dest(dest.css + 'vendors/'))
 
 gulp.task 'dev:css', ->
   gulp.src(src.sass)
@@ -47,8 +57,10 @@ gulp.task 'dev:js', ->
         .pipe(gulp.dest(dest.js))
 
 gulp.task 'watch', ->
-  gulp.watch src.sass, ['dev:css']
-  gulp.watch src.coffee, ['dev:js']
+  livereload.listen()
+  gulp.watch ['src/scss/*.scss', 'src/scss/**/*.scss'], ['dev:css']
+  gulp.watch ['src/coffee/*.coffee', 'src/coffee/**/*.coffee'], ['dev:js']
+  gulp.watch(['public/**', 'views/**']).on 'change', livereload.changed
 
 gulp.task 'build:css', ->
   gulp.src(src.sass)
@@ -64,8 +76,8 @@ gulp.task 'build:js', ->
     .pipe(gulp.dest(dest.js))
 
 gulp.task 'clean', ->
-  del([dest.css, dest.js])
+  del(["./public/css/*.css", "./public/js/*.js", "./public/js/*.js.map"])
 
-gulp.task 'default', ['dev:css', 'dev:js', 'watch']
+gulp.task 'default', ['css:vendors', 'dev:css', 'dev:js', 'nodemon', 'watch']
 
-gulp.task 'build', ['build:css', 'build:js']
+gulp.task 'build', ['css:vendors', 'build:css', 'build:js']

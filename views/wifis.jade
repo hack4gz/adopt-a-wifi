@@ -1,0 +1,44 @@
+extends layout
+
+block head
+  link(rel='stylesheet', href='/css/wifis.css')
+
+block content
+  table.pure-table.pure-table-horizontal.pure-table-striped(style="display: none", data-bind="visible: true")
+    thead
+      tr
+        th #
+        th 邮箱
+        th 收养人
+        th WIFI名
+        th 地址
+        th 商家信息
+        th 状态
+        th 经度
+        th 纬度
+        th
+        th
+          .switch-status-button
+            span(data-bind="click: toggleFilter, text: currentStatus")
+
+    tbody(data-bind="foreach: filterWifis")
+      tr
+        td(data-bind="text: id")
+        td(data-bind="text: email")
+        td(data-bind="text: adopter")
+        td
+          input(type='text', data-bind="textInput: name")
+        td(data-bind="text: location")
+        td(data-bind="text: business")
+        td(data-bind="text: status")
+        td
+          input(type='text', data-bind="textInput: latitude")
+        td
+          input(type='text', data-bind="textInput: longitude")
+        td
+          button.pure-button.pure-button-primary(data-bind="click: updateWifi, disable: !isValid()") 确认
+        td
+          button.pure-button(data-bind="click: deleteWifi") 删除
+
+  script(src="/js/wifis.js")
+

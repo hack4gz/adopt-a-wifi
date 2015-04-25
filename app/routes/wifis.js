@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('applications', { title: 'applications' });
+  res.render('wifis', { title: 'Wifis' });
 });
 
 module.exports = router;
