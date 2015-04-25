@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'WLAN MAP' });
+  res.render('home', { title: 'Adopt A Wifi' });
 });
 
 module.exports = router;
