@@ -10,7 +10,8 @@ WIFI领养计划
 
 如何提供一个可以访问 \*\*beep\*\* 的WIFI
 * 购买一个自带该功能的路由器(以下不是广告)
-  * [OAIR H600](http://www.oair.com/index.php/index/web2_pro_c_h600.html)
+  * [OAIR H600](http://www.oair.com/index.php/index/web2_pro_c_h600.html) 即插即用，无需配置，vpn 免费一年
+  * [极路由](http://hiwifi.com/)，需要另外购买 VPN 账号，在路由器设置中填入，一劳永逸
 * 给已有路由器更新固件(待完善)
 * 软件方案(待完善)
 
